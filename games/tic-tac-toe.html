@@ -62,6 +62,38 @@
       color: white;
       border: none;
     }
+    .rules-section {
+  margin-top: 40px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #e5e7eb;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rules-section h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.rules-list {
+  list-style: none;
+  line-height: 1.8;
+  padding-left: 0;
+}
+
+.rules-list li::before {
+  content: "🎮 ";
+  margin-right: 6px;
+  color: var(--neon-purple);
+}
+
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -134,6 +166,40 @@
       </div>
     </div>
   </div>
+  <section class="glass-card rules-section">
+  <h2 class="font-orbitron glow-text">🎯 Game Rules</h2>
+  <ul class="font-rajdhani rules-list">
+    <li>Each player takes turns marking one empty cell with their symbol (X or O).</li>
+    <li>The first player to align 3 symbols horizontally, vertically, or diagonally wins.</li>
+    <li>If all 9 cells are filled and no one wins, it’s a draw.</li>
+    <li>Click the “Reset” button to start a new round anytime.</li>
+    <li>Winning streaks and scores are tracked in real-time.</li>
+  </ul>
+</section>
+
+    <!-- Footer -->
+    <footer class="relative py-12 border-t border-white/10">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-gamepad text-white text-sm"></i>
+                    </div>
+                    <span class="font-orbitron font-bold text-xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">GameHub</span>
+                </div>
+                <p class="font-rajdhani text-gray-400 mb-6">Made with ❤️ for gamers worldwide</p>
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="font-rajdhani text-sm text-gray-500">© 2024 GameHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
 
   <script src="../scripts/tic-tac-toe.js"></script>
 </body>
