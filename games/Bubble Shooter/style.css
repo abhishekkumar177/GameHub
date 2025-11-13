@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at center, #141e30, #243b55);
+  color: #fff;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  margin-top: 20px;
+  color: #f5b8ff;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #ff8af5;
+}
+
+#gameCanvas {
+  display: block;
+  margin: 20px auto;
+  background: #1e293b;
+  border: 3px solid #8ec5fc;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+button {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #ff6fd8, #3813c2);
+}
