@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 30px;
+    background: #f4f4f4;
+}
+
+#puzzle {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.tile {
+    background: #3498db;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.empty {
+    background: #bdc3c7;
+    cursor: default;
+}
+
+#shuffleBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #2ecc71;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#message {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #27ae60;
+}
