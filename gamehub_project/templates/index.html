@@ -1,5 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +12,27 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 
-    <link type="image/png" sizes="96x96" rel="icon" href="assets/game-controller.png">
-    
+    <link type="image/png" sizes="96x96" rel="icon" href="{% static 'assets/game-controller.png' %}">
+
     <!-- Audio System -->
-    <script src="scripts/audio-system.js"></script>
-    <script src="scripts/audio-ui.js"></script>
+    <script src="{% static 'scripts/audio-system.js' %}"></script>
+    <script src="{% static 'scripts/audio-ui.js' %}"></script>
 </head>
 <body class="bg-gray-900 text-white overflow-x-hidden home-page">
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0">
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 animate-gradient"></div>
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 animate-gradient">
+        </div>
+        <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%239C92AC&quot; fill-opacity=&quot;0.1&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20">
+        </div>
     </div>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 glass-nav backdrop-blur-lg bg-black/20 border-b border-white/10 animate__animated animate__fadeInDown">
+    <nav
+        class="fixed top-0 w-full z-50 glass-nav backdrop-blur-lg bg-black/20 border-b border-white/10 animate__animated animate__fadeInDown">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-8">
@@ -47,10 +53,27 @@
                         <input type="text" id="searchInput" placeholder="Search games..." class="search-input" />
                         <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
+
+                    {% if user.is_authenticated %}
+                    <span class="text-purple-500 font-bold font-rajdhani ">
+                        👋
+                    </span>
+                    <span
+                        class="font-orbitron font-bold  bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        Hello, {{ user.first_name|default:user.username }}
+                    </span>
+
+                    <a href="{% url 'logout' %}" class="neon-button secondary text-sm">Logout</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="neon-button secondary text-sm">Login</a>
+                    {% endif %}
+
+
                     <button id="themeToggle" class="theme-toggle">
                         <i class="fas fa-moon"></i>
                     </button>
                 </div>
+
             </div>
         </div>
     </nav>
@@ -60,17 +83,21 @@
         <div class="container mx-auto px-4 text-center relative z-10">
             <div class="max-w-4xl mx-auto">
                 <h1 class="font-orbitron font-black text-6xl md:text-8xl mb-6 animate__animated animate__fadeInDown">
-                    <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent glow-text">
+                    <span
+                        class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent glow-text">
                         GameHub
                     </span>
                 </h1>
-                <p class="font-rajdhani text-xl md:text-2xl mb-8 text-gray-300 animate__animated animate__fadeInUp animate__delay-1s">
+                <p
+                    class="font-rajdhani text-xl md:text-2xl mb-8 text-gray-300 animate__animated animate__fadeInUp animate__delay-1s">
                     Play. Compete. <span class="text-purple-400 font-semibold">Have Fun.</span>
                 </p>
-                <p class="font-rajdhani text-lg mb-12 text-gray-400 animate__animated animate__fadeInUp animate__delay-2s">
+                <p
+                    class="font-rajdhani text-lg mb-12 text-gray-400 animate__animated animate__fadeInUp animate__delay-2s">
                     Experience premium browser games with stunning visuals and smooth gameplay
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-3s">
+                <div
+                    class="flex flex-col sm:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-3s">
                     <a href="#games" class="neon-button primary">
                         <i class="fas fa-rocket mr-2"></i>
                         Start Playing
@@ -116,7 +143,7 @@
                 </h2>
                 <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
                     <p class="font-rajdhani text-xl text-gray-300 mb-6">
-                        GameHub is your ultimate destination for premium browser gaming experiences. 
+                        GameHub is your ultimate destination for premium browser gaming experiences.
                         Built with cutting-edge web technologies and stunning visual effects.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -164,7 +191,12 @@
         </div>
     </footer>
 
+    <!-- AOS + Local JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="main.js"></script>
+
+    <!-- Local JS converted to Django static -->
+    <script src="{% static 'main.js' %}"></script>
+
 </body>
+
 </html>
