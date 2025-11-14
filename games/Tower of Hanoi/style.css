@@ -1,0 +1,53 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    padding-top: 30px;
+}
+
+#game {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.peg {
+    width: 120px;
+    height: 250px;
+    background: #ddd;
+    border-radius: 10px;
+    padding-top: 200px;
+    position: relative;
+}
+
+.disk {
+    position: absolute;
+    height: 25px;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: grab;
+}
+
+.disk1 { width: 60px; background: #3498db; }
+.disk2 { width: 90px; background: #f1c40f; }
+.disk3 { width: 120px; background: #e74c3c; }
+
+#resetBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 30px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#message {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #27ae60;
+}
