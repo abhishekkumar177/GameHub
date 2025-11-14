@@ -31,7 +31,7 @@ Maintainers will:
 
 ## 🚨 Reporting Violations  
 If you experience or witness behaviour that breaches this Code of Conduct:  
-- 📧 Email: `kaifansari04@gmail.com` (or the repo owner’s chosen contact)  
+- 📧 Email: `kaifansari04@gmail.com`  
 - 📩 Create a confidential issue titled **“Code of Conduct Violation Report”**  
 All reports will be handled promptly and with discretion.
 
