@@ -21,6 +21,7 @@ const maxRounds = 3;
 
 // Play game
 function playGame(playerChoice) {
+  if (roundCount >= maxRounds) return;
   const computerChoice = getComputerChoice();
   const result = determineWinner(playerChoice, computerChoice);
 
@@ -35,6 +36,7 @@ function playGame(playerChoice) {
   // show final result
   if (roundCount >= maxRounds) {
     updateResult("final", playerChoice, computerChoice);
+    disableGameButtons();
   } else {
     updateResult(result, playerChoice, computerChoice, roundCount);
   }
@@ -95,7 +97,6 @@ function updateResult(result, playerChoice, computerChoice, roundCount = 0) {
       message = `🤝 The match is a draw! (${scores.player} - ${scores.computer})   👉 Click 'Reset' to start a new game.`;
       alertClass = "alert alert-warning";
     }
-    
   } else {
     message = `Round ${roundCount} of 3: `;
     if (result === "player") {
@@ -107,8 +108,7 @@ function updateResult(result, playerChoice, computerChoice, roundCount = 0) {
     } else {
       message += `It's a draw! You both chose ${choices[playerChoice].name}.`;
       alertClass = "alert alert-warning";
-    }   
-
+    }
   }
 
   resultText.textContent = message;
@@ -154,6 +154,21 @@ function resetGame() {
   document.getElementById("playerChoice").textContent = "❓";
   document.getElementById("computerChoice").textContent = "❓";
   document.getElementById("gameResult").classList.add("hidden");
+
+  //   Enable game buttons
+  enableGameButtons();
+}
+
+// Disable game buttons
+function disableGameButtons() {
+  const button = document.querySelectorAll(".rps-button");
+  button.forEach((btn) => (btn.disable = true));
+}
+
+// Enable game buttons
+function enableGameButtons() {
+  const button = document.querySelectorAll(".rps-button");
+  button.forEach((btn) => (btn.disable = false));
 }
 
 // Initialize game when page loads
