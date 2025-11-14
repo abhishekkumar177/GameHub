@@ -1,54 +1,56 @@
 // Game data
+// Game data
 const games = [
   {
     id: "tic-tac-toe",
     title: "Tic Tac Toe",
     description: "Classic 3x3 grid game",
-    image: "assets/tiktactoe.png",
-    file: "games/tic-tac-toe.html",
+    image: "/static/assets/tiktactoe.png",
+    file: "/static/games/tic-tac-toe.html",
     category: "strategy",
   },
   {
     id: "snake",
     title: "Snake Game",
     description: "Eat food and grow longer",
-    image: "assets/snake_game.png",
-    file: "games/snake.html",
+    image: "/static/assets/snake_game.png",
+    file: "/static/games/snake.html",
     category: "arcade",
   },
   {
     id: "simon",
     title: "Simon Says",
     description: "Memory pattern game",
-    image: "assets/simon_says.png",
-    file: "games/simon.html",
+    image: "/static/assets/simon_says.png",
+    file: "/static/games/simon.html",
     category: "memory",
   },
   {
     id: "memory",
     title: "Memory Flip",
     description: "Match pairs of cards",
-    image: "assets/memory_flip.png",
-    file: "games/memory.html",
+    image: "/static/assets/memory_flip.png",
+    file: "/static/games/memory.html",
     category: "memory",
   },
   {
     id: "rps",
     title: "Rock Paper Scissors",
     description: "Classic hand game",
-    image: "assets/rockpaperscissors.png",
-    file: "games/rps.html",
+    image: "/static/assets/rockpaperscissors.png",
+    file: "/static/games/rps.html",
     category: "strategy",
   },
   {
-        id: '2048',
-        title: '2048 Game',
-        description: 'Slide tiles to reach 2048',
-        image: 'https://play-lh.googleusercontent.com/I-cDz4JCEufeRmvJCYLJO_p9i4xCcToKpOtzwvwaYoHU1HmcglEHejPceMeNYSDBXAo',
-        file: 'games/2048.html',
-        category: 'puzzle'
+    id: "2048",
+    title: "2048 Game",
+    description: "Slide tiles to reach 2048",
+    image: "https://play-lh.googleusercontent.com/I-cDz4JCEufeRmvJCYLJO_p9i4xCcToKpOtzwvwaYoHU1HmcglEHejPceMeNYSDBXAo",
+    file: "/static/games/2048.html",
+    category: "puzzle"
   },
 ];
+
 
 
 // Initialize AOS
