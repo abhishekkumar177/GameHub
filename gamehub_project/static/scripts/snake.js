@@ -1,10 +1,11 @@
-// Snake Game Logic
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+// snake.js (New Top Lines)
+let canvas; 
+let ctx;
+let tileCount; 
+// ... rest of your global variables (gridSize, snake, food, etc.)
 
 // Game variables
 const gridSize = 20;
-const tileCount = canvas.width / gridSize;
 
 let snake = [{ x: 10, y: 10 }];
 let food = {};
@@ -103,6 +104,9 @@ function initAchievements() {
 // Initialize game
 function initGame() {
     // Check if canvas and context are available
+    canvas = document.getElementById('gameCanvas');
+    ctx = canvas.getContext('2d');
+    tileCount = canvas.width / gridSize;
     if (!canvas || !ctx) {
         console.error('Canvas or context not found!');
         return;
