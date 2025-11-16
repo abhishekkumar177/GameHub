@@ -1,6 +1,17 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from .models import Profile
+import json
+
+
+def get_user_profile(user):
+    profile, created = Profile.objects.get_or_create(user=user)
+    return profile
+
 
 def login(request):
     if request.method == 'POST':
@@ -9,16 +20,17 @@ def login(request):
 
         if not username or not password:
             messages.error(request, "Both fields are required.")
-            return render(request, 'login.html')  # Avoid losing entered data
-        
+            return render(request, 'login.html')
+
         user = auth.authenticate(username=username, password=password)
 
         if user is not None:
             auth.login(request, user)
-            return redirect("/")  # Redirect to home or dashboard
+            get_user_profile(user)   # ensure profile exists
+            return redirect("/")
         else:
             messages.error(request, "Invalid username or password.")
-            return render(request, 'login.html') 
+            return render(request, 'login.html')
 
     return render(request, 'login.html')
 
@@ -48,14 +60,90 @@ def register(request):
             messages.error(request, "Email is already registered.")
             return render(request, 'login.html', {'show_register': True})
 
-        # Create user if everything is fine
-        user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
+        user = User.objects.create_user(
+            username=username,
+            password=password1,
+            email=email,
+            first_name=first_name,
+            last_name=last_name
+        )
         user.save()
+
+        get_user_profile(user)
+
         messages.success(request, "Registration successful! Please log in.")
-        return redirect('login')  # Use the 'login' URL pattern
+        return redirect('login')
 
     return render(request, 'login.html', {'show_register': True})
 
+
 def logout(request):
     auth.logout(request)
-    return redirect('/')  # Redirect to home
+    return redirect('/')
+
+
+def leaderboard(request):
+    users = Profile.objects.select_related("user").extra(
+        select={'score': 'visits + (plays * 5)'}
+    ).order_by('-score')
+    return render(request, 'leaderboard.html', {'users': users})
+
+
+@csrf_exempt
+def add_visit(request):
+    # Check if user is authenticated
+    if not request.user.is_authenticated:
+        print("DEBUG: User not authenticated")
+        return JsonResponse({"status": "error", "message": "User not authenticated"}, status=401)
+    
+    try:
+        data = json.loads(request.body) if request.body else {}
+        game = data.get("game")
+        print(f"DEBUG: add_visit called for game={game}")
+        # Get or create user profile
+        profile = get_user_profile(request.user)
+        
+        profile.visits += 1
+        profile.save()
+        print(f"DEBUG: Visit added for {game or 'unknown'}. Total visits: {profile.visits}, plays: {profile.plays}")
+        
+        score = profile.visits + (profile.plays * 5)
+        return JsonResponse({
+            "status": "success", 
+            "visits": profile.visits,
+            "plays": profile.plays,
+            "game": game,
+            "score": score
+        })
+        
+    except Exception as e:
+        print(f"DEBUG: Error in add_visit: {e}")
+        return JsonResponse({"status": "error", "message": "Internal server error"}, status=500)
+
+
+@csrf_exempt
+def add_play(request):
+    # Check if user is authenticated
+    if not request.user.is_authenticated:
+        print("DEBUG: User not authenticated")
+        return JsonResponse({"status": "error", "message": "User not authenticated"}, status=401)
+    
+    try:
+        # Get or create user profile
+        profile = get_user_profile(request.user)
+        
+        profile.plays += 1
+        profile.save()
+        print(f"DEBUG: Play added. Total visits: {profile.visits}, plays: {profile.plays}")
+        
+        score = profile.visits + (profile.plays * 5)
+        return JsonResponse({
+            "status": "success", 
+            "visits": profile.visits,
+            "plays": profile.plays,
+            "score": score
+        })
+        
+    except Exception as e:
+        print(f"DEBUG: Error in add_play: {e}")
+        return JsonResponse({"status": "error", "message": "Internal server error"}, status=500)
