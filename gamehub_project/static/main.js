@@ -351,7 +351,16 @@ const games = [
     image: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1000",
     file: "/static/games/Word Scramble/index.html",
     category: "word"
+  },
+  {
+    id: 'typing-speed-test',
+    title: 'Typing Speed Test',
+    description: 'A clean, fast, minimalistic typing speed test game with multiple modes and a smooth UI.',
+    image: '/static/assets/typing-speed-test.png',
+    file: '/static/games/typing-speed-test/index.html',
+    category: 'productivity'
   }
+
 ];
 
 // ============================================

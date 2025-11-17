@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Typing Speed Test — Enhanced</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Typing Speed Test</h1>
+    <div class="controls-top">
+      <button id="darkToggle" aria-label="Toggle dark mode">🌙</button>
+      <select id="mode">
+        <option value="normal">Normal</option>
+        <option value="timed-30">Timed — 30s</option>
+        <option value="timed-60">Timed — 60s</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="config">
+      <label class="small">Custom text (optional)</label>
+      <textarea id="customText" placeholder="Paste a paragraph or words to type..." rows="3"></textarea>
+      <div class="buttons-row">
+        <button id="start">Start</button>
+        <button id="restart">Restart</button>
+      </div>
+    </section>
+
+    <section class="test-area">
+      <div id="box" class="box" aria-live="polite"></div>
+
+      <div class="input-row">
+        <input id="input" placeholder="Start typing..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+      </div>
+
+      <div id="meta" class="meta">
+        <div id="time">Time: 0s</div>
+        <div id="wpm">WPM: —</div>
+        <div id="accuracy">Accuracy: —</div>
+      </div>
+
+      <div id="progress-container" class="progress-container" aria-hidden="true">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <div class="extras">
+        <label><input type="checkbox" id="soundToggle" checked /> Sounds</label>
+        <label><input type="checkbox" id="highlightWords" checked /> Word highlight</label>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Features: sound • timed modes • dark mode • responsive • custom text • word highlighting</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
