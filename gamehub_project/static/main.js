@@ -567,24 +567,6 @@ function renderGames(gamesToRender = games) {
   AOS.refresh();
 }
 
-// Play game function
-function playGame(gameFile) {
-  // Store recently played
-  let recentlyPlayed = JSON.parse(
-    localStorage.getItem("recentlyPlayed") || "[]"
-  );
-  const game = games.find((g) => g.file === gameFile);
-
-  if (game) {
-    recentlyPlayed = recentlyPlayed.filter((g) => g.id !== game.id);
-    recentlyPlayed.unshift(game);
-    recentlyPlayed = recentlyPlayed.slice(0, 5);
-    localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
-  }
-
-  window.location.href = gameFile;
-}
-
 // Enhanced search with animations
 function setupEnhancedSearch() {
   const searchInput = document.getElementById("searchInput");
@@ -692,3 +674,38 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   });
 });
+
+
+function getCSRFToken() {
+  return document.cookie
+    .split(";")
+    .map(c => c.trim())
+    .find(c => c.startsWith("csrftoken="))
+    ?.split("=")[1] || "";
+}
+
+function playGame(gameFile) {
+
+  // ❗ 1) Block iframe scoring and redirect
+  if (window !== window.parent) return;
+
+  const game = games.find(g => g.file === gameFile);
+
+  if (game) {
+    // ❗ 2) Recently played
+    let recent = JSON.parse(localStorage.getItem("recentlyPlayed") || "[]");
+
+    recent = recent.filter(g => g.id !== game.id);
+    recent.unshift(game);
+    recent = recent.slice(0, 5);
+
+    localStorage.setItem("recentlyPlayed", JSON.stringify(recent));
+
+    // NOTE: Visit will be tracked by the individual game page on load to avoid duplicate counts.
+  }
+
+  // ❗ 4) Redirect to game
+  window.location.href = gameFile;
+}
+
+main.js

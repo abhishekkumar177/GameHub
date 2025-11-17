@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard - GameHub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen relative overflow-hidden">
+
+    <!-- Background Gradient & Dots -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 animate-gradient"></div>
+        <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;%239C92AC&quot; fill-opacity=&quot;0.1&quot; /%3E%3C/svg%3E')] opacity-20">
+        </div>
+    </div>
+
+    <div class="relative z-10 container mx-auto py-16 px-4">
+        
+        <!-- Title -->
+        <h1 class="text-center font-orbitron text-5xl md:text-6xl mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent animate__animated animate__fadeInDown">
+            Leaderboard
+        </h1>
+
+        <!-- Glassmorphic Card -->
+        <div
+            class="glass-card p-8 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 shadow-lg shadow-purple-900/40 animate__animated animate__fadeInUp">
+
+            <table class="min-w-full text-center">
+                <thead>
+                    <tr class="text-purple-300 border-b border-white/20 text-lg font-orbitron">
+                        <th class="py-4">Rank</th>
+                        <th class="py-4">Player</th>
+                        <th class="py-4">Engagement Score</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for profile in users %}
+                    <tr class="border-b border-white/10 hover:bg-white/10 transition-all duration-300">
+
+                        <!-- Rank with Badge -->
+                        <td class="py-4 text-xl font-orbitron font-bold">
+                            {% if forloop.counter == 1 %}
+                                🥇
+                            {% elif forloop.counter == 2 %}
+                                🥈
+                            {% elif forloop.counter == 3 %}
+                                🥉
+                            {% else %}
+                                {{ forloop.counter }}
+                            {% endif %}
+                        </td>
+
+                        <!-- Username -->
+                        <td class="py-4 font-rajdhani text-xl text-gray-200">
+                            {{ profile.user.username }}
+                        </td>
+
+                        <!-- Engagement Score -->
+                        <td class="py-4 font-orbitron text-purple-400 text-2xl font-extrabold">
+    {{ profile.score|default:"0" }}
+    <div class="text-xs text-gray-500 mt-1">({{ profile.visits }} visits + {{ profile.plays }} plays)</div>
+</td>
+                    </tr>
+
+                {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-gray-400 py-12 text-xl font-rajdhani">
+                            No players yet — start playing to appear here!
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Back Home Button -->
+        <div class="text-center mt-10">
+            <a href="{% url 'home' %}" class="neon-button">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Home
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

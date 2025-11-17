@@ -1,5 +1,11 @@
-body {
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
+}
+
+body {
+  height: 1024px;
   background: linear-gradient(120deg, #141e30, #243b55);
   font-family: Arial, sans-serif;
   color: white;
@@ -10,6 +16,7 @@ body {
 
 .container {
   text-align: center;
+  margin: 0 20px;
 }
 
 .title {
@@ -30,4 +37,24 @@ canvas {
   justify-content: space-between;
   font-size: 18px;
   padding: 0 15px;
+}
+
+@media (max-width: 1024px) {
+  body {
+    height: 720px;
+  }
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    height: 700px;
+  }
+  canvas {
+    width: 400px;
+    height: auto;
+  }
 }

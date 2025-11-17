@@ -50,6 +50,18 @@ function update() {
 
     requestAnimationFrame(update);
 }
+function addGamePoints(category, action) {
+  fetch("/accounts/add-points/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ category, action }),
+  })
+    .then(res => res.json())
+    .then(data => console.log("Points added:", data))
+    .catch(err => console.error("Point error:", err));
+}
 
 canvas.addEventListener("click", (e) => {
     const mouseX = e.offsetX;
