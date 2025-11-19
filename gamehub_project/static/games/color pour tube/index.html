@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Color Pour Game</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="game-container">
+        <!-- Menu Screen -->
+        <div id="menu-screen" class="screen active">
+            <div class="menu-card">
+                <div class="menu-header">
+                    <h1 class="game-title">🧪 Color Pour</h1>
+                    <p class="game-subtitle">Sort the colors into matching tubes!</p>
+                </div>
+                
+                <div class="difficulty-buttons">
+                    <button class="diff-btn easy-btn" onclick="startGame('easy')">
+                        <div class="btn-content">
+                            <div class="btn-title">🟢 Easy</div>
+                            <div class="btn-desc">3 colors • 5 tubes</div>
+                        </div>
+                        <div class="btn-shine"></div>
+                    </button>
+                    
+                    <button class="diff-btn medium-btn" onclick="startGame('medium')">
+                        <div class="btn-content">
+                            <div class="btn-title">🟡 Medium</div>
+                            <div class="btn-desc">4 colors • 6 tubes</div>
+                        </div>
+                        <div class="btn-shine"></div>
+                    </button>
+                    
+                    <button class="diff-btn hard-btn" onclick="startGame('hard')">
+                        <div class="btn-content">
+                            <div class="btn-title">🔴 Hard</div>
+                            <div class="btn-desc">5 colors • 7 tubes</div>
+                        </div>
+                        <div class="btn-shine"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="header-info">
+                    <h2 class="difficulty-title" id="difficulty-display"></h2>
+                    <p class="moves-display">Moves: <span id="moves-count">0</span></p>
+                </div>
+                <div class="header-buttons">
+                    <button class="action-btn restart-btn" onclick="restartGame()">
+                        <span>🔄</span> Restart
+                    </button>
+                    <button class="action-btn menu-btn" onclick="backToMenu()">
+                        <span>🏠</span> Menu
+                    </button>
+                </div>
+            </div>
+
+            <!-- Win Screen -->
+            <div id="win-screen" class="win-banner hidden">
+                <div class="win-content">
+                    <div class="trophy">🏆</div>
+                    <h3 class="win-title">🎉 You Won! 🎉</h3>
+                    <p class="win-moves">Completed in <span id="final-moves">0</span> moves</p>
+                    <button class="play-again-btn" onclick="backToMenu()">Play Again</button>
+                </div>
+            </div>
+
+    
+            <div id="tubes-container" class="tubes-grid"></div>
+
+            <div class="game-hint">
+                <p>Click a tube to select, then click another to pour</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

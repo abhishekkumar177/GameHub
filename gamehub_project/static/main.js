@@ -360,7 +360,6 @@ const games = [
     file: '/static/games/typing-speed-test/index.html',
     category: 'productivity'
   }
-
 ];
 
 // ============================================
