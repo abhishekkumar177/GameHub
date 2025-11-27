@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dash X</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="startScreen">
+  <h1>⚡ DASH X ⚡</h1>
+  <p>Use ← → to move • Avoid obstacles • Collect coins</p>
+  <button onclick="startGame()">START</button>
+</div>
+
+<button id="pauseBtn" onclick="togglePause()">⏸</button>
+
+<div id="game">
+  <div class="track"></div>
+  <div id="player"></div>
+
+  <div id="hud">
+    <span id="hudText">Score: 0 | Coins: 0 | Lives: 3</span>
+
+    <div id="shieldBarContainer">
+      <div id="shieldBar"></div>
+    </div>
+    <div id="magnetBarContainer">
+      <div id="magnetBar"></div>
+    </div>
+  </div>
+</div>
+
+<div id="gameOver">
+  <h2>GAME OVER</h2>
+  <p id="finalScore"></p>
+  <p id="highScore"></p>
+
+  <button onclick="restartGame()">RESTART</button>
+  <button onclick="resetHighScore()">RESET HIGH SCORE</button>
+</div>
+
+
+<button id="shopBtn" onclick="openShop()">🛒 Shop</button>
+
+<div id="shop">
+  <h2>Dash X Shop</h2>
+
+  <p>Coins: <span id="shopCoins">0</span></p>
+
+  <!-- ✅ SPEED BOOST FULLY REMOVED -->
+  <button onclick="buyShield()">🛡 Shield (5)</button>
+  <button onclick="buyLife()">❤️ Extra Life (10)</button>
+  <button onclick="buyMagnet()">🧲 Coin Magnet (7)</button>
+
+  <button onclick="closeShop()">Close</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

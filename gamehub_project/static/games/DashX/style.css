@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #020024, #090979, #000);
+  overflow: hidden;
+}
+
+/* Fullscreen game area */
+#game {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #03001e, #0b1320);
+  overflow: hidden;
+}
+
+/* Start screen */
+#startScreen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #0f2027, #000);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: cyan;
+  text-align: center;
+  z-index: 100;
+}
+
+#startScreen h1 {
+  font-size: 56px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px cyan;
+}
+
+/* Pause button */
+#pauseBtn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: cyan;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* Track scrolling background */
+.track {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    #111 0px,
+    #111 40px,
+    #222 40px,
+    #222 80px
+  );
+  animation: moveTrack 0.7s linear infinite;
+}
+
+@keyframes moveTrack {
+  from { background-position-y: 0; }
+  to { background-position-y: 80px; }
+}
+
+/* Player */
+#player {
+  position: absolute;
+  bottom: 60px;
+  width: 70px;
+  height: 70px;
+  background: cyan;
+  border-radius: 18px;
+  box-shadow: 0 0 20px cyan;
+  transform: translateX(-50%);
+}
+
+/* Obstacles, coins, drones */
+.obstacle,
+.coin,
+.drone {
+  position: absolute;
+}
+
+.obstacle {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(45deg, #ff0033, #7a0017);
+  border-radius: 20px;
+  box-shadow: 0 0 18px #ff0033;
+}
+
+.coin {
+  width: 45px;
+  height: 45px;
+  background: gold;
+  border-radius: 50%;
+  box-shadow: 0 0 12px gold;
+}
+
+.drone {
+  width: 100px;
+  height: 50px;
+  background: linear-gradient(45deg, #7f00ff, #00e5ff);
+  box-shadow: 0 0 18px #00e5ff;
+  border-radius: 25px;
+}
+
+/* HUD */
+#hud {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  color: cyan;
+  font-size: 18px;
+  z-index: 20;
+}
+
+/* Game over */
+#gameOver {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: cyan;
+  font-size: 26px;
+  z-index: 50;
+}
+
+/* Buttons */
+button {
+  margin-top: 18px;
+  padding: 12px 28px;
+  border-radius: 24px;
+  border: none;
+  background: cyan;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Screen shake effect */
+.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(6px, 4px); }
+  50% { transform: translate(-6px, -4px); }
+  75% { transform: translate(4px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+#shopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: cyan;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 20;
+}
+
+#shop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: cyan;
+  z-index: 200;
+}
+
+#shop button {
+  margin: 10px;
+  padding: 12px 20px;
+  background: cyan;
+  border-radius: 20px;
+  font-weight: bold;
+}
+#shieldBarContainer {
+  width: 150px;
+  height: 10px;
+  border: 1px solid cyan;
+  margin-top: 8px;
+  background: rgba(0, 255, 255, 0.1);
+}
+
+#shieldBar {
+  height: 100%;
+  width: 0%;
+  background: cyan;
+  box-shadow: 0 0 10px cyan;
+  transition: width 0.1s linear;
+}
+#magnetBarContainer {
+  width: 150px;
+  height: 8px;
+  border: 1px solid purple;
+  margin-top: 6px;
+  background: rgba(128, 0, 255, 0.2);
+}
+
+#magnetBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, violet, magenta);
+  box-shadow: 0 0 8px magenta;
+  transition: width 0.1s linear;
+}

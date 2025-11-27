@@ -359,8 +359,15 @@ const games = [
     image: '/static/assets/typing-speed-test.png',
     file: '/static/games/typing-speed-test/index.html',
     category: 'productivity'
+  },
+  {
+    id: 'DashX',
+    title: 'Dash X',
+    description: 'A fast-paced endless runner game set in a neon-lit futuristic cityscape.',
+    image: '/static/assets/DashX_logo.png',
+    file: '/static/games/DashX/index.html',
+    category: 'arcade'
   }
-
 ];
 
 // ============================================
