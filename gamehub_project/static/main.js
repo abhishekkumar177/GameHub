@@ -367,6 +367,14 @@ const games = [
     image: '/static/assets/DashX_logo.png',
     file: '/static/games/DashX/index.html',
     category: 'arcade'
+  },
+  {
+    id: 'Flappy',
+    title: ' Flappy Bird',
+    description: 'An arcade game where a bird had to pass from obstacles.',
+    image: '/static/games/flappyBird/Logo.png',
+    file: '/static/games/flappyBird/flappy.html',
+    category: 'arcade'
   }
 ];
 
