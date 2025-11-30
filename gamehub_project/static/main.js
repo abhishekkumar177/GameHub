@@ -387,7 +387,6 @@ const games = [
  * Checks localStorage and system preference
  */
 function initializeTheme() {
-  const html = document.documentElement;
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = themeToggle?.querySelector("i");
   
@@ -401,7 +400,7 @@ function initializeTheme() {
   }
   
   // Apply theme
-  html.setAttribute("data-theme", savedTheme);
+document.body.setAttribute("data-theme", savedTheme);
   
   // Update icon
   if (themeIcon) {
@@ -416,17 +415,17 @@ function initializeTheme() {
  * Toggle between light and dark themes
  */
 function toggleTheme() {
-  const html = document.documentElement;
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = themeToggle?.querySelector("i");
   
   // Get current theme
-  const currentTheme = html.getAttribute("data-theme");
+  const currentTheme = document.body.getAttribute("data-theme") || "dark";
   const newTheme = currentTheme === "dark" ? "light" : "dark";
   
   // Apply new theme with smooth transition
-  html.style.transition = "background-color 0.3s ease, color 0.3s ease";
-  html.setAttribute("data-theme", newTheme);
+  document.body.style.transition = "background-color 0.3s ease, color 0.3s ease";
+  document.body.setAttribute("data-theme", newTheme);
+
   
   // Save to localStorage
   localStorage.setItem("theme", newTheme);
@@ -529,14 +528,14 @@ function setupSystemThemeListener() {
     // Only auto-update if user hasn't manually set a preference
     const savedTheme = localStorage.getItem("theme");
     if (!savedTheme) {
-      const html = document.documentElement;
       const newTheme = e.matches ? "dark" : "light";
-      html.setAttribute("data-theme", newTheme);
+      document.body.setAttribute("data-theme", newTheme);
       
       const themeIcon = document.querySelector("#themeToggle i");
       if (themeIcon) {
         themeIcon.className = newTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
       }
+
       
       console.log(`🎨 System theme changed to: ${newTheme}`);
     }
